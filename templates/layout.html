@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/static/htmx.min.js"></script>
+    <link rel="stylesheet" href="https://classless.de/classless.css">
+    <title>KAU Surgery</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div>
+                <ul>
+                    <li><a href="/">
+                            <img src="/static/favicon.png" width="30" height="30" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/about">About</a>
+                    </li>
+                    <li>
+                        <a href="/mission">Mission</a>
+                    </li>
+                    <li>
+                        <a href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Divisions
+                        </a>
+                        <ul>
+                            <li><a href="/divisions/gs">General Surgery</a></li>
+                            <li><a href="/divisions/ns">Neurosurgery</a></li>
+                            <li><a href="/divisions/cs">Cardiac Surgery</a></li>
+                            <li><a href="/divisions/ts">Thoracic surgery</a></li>
+                            <li><a href="/divisions/vs">Vascular surgery</a></li>
+                            <li><a href="/divisions/pls">Plastic surgery</a></li>
+                            <li><a href="/divisions/peds">Pediatric surgery</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/faculty">Faculty</a>
+                    </li>
+                    <li>
+                        <a href="/contact">Contact</a>
+                    </li>
+                    <li class="float-right sticky">
+                        <form method="POST">
+                            <input type="text" placeholder="Search..." name="search">
+                            </input>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div>
+        <main role="main">
+            <p>
+                <br>
+                {{entry|safe}}
+            </p>
+        </main>
+    </div>
+
+    <footer>
+        <div>
+            &copy; 2019 - KAU Surgery - <a href="/privacy">Privacy</a>
+        </div>
+    </footer>
+</body>
+
+</html>
