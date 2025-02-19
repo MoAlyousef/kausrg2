@@ -1,0 +1,47 @@
+<a class="btn btn-success btn-sm" style="float:right" href="/ar/divisions/cs.html">العربية</a>
+<br>
+<br>
+<h3>
+    About the division
+</h3>
+<br>
+<br>
+<p>
+    Cardiac surgery, or cardiovascular surgery, is surgery on the heart or great vessels performed by cardiac surgeons.
+    It is often used to treat complications of ischemic heart disease (for example, with coronary artery bypass
+    grafting); to correct congenital heart disease; or to treat valvular heart disease from various causes, including
+    endocarditis, rheumatic heart disease, and atherosclerosis. It also includes heart transplantation.
+
+</p>
+<br>
+
+<h3>Division members</h3>
+<br>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col-12">
+            <table class="table table-striped" style="width:100%">
+                <tr>
+                    <th>Name</th>
+                    <th>Nationality</th>
+                    <th>Academic Rank</th>
+                </tr>
+                {% for user in entry %}
+                    <tr>
+                    <td><a href="/faculty/{{user.id}}">{{user.name}}</a></td>
+                    <td>{{user.nationality}}</td>
+                    <td>{{user.rank}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col">
+        </div>
+
+    </div>
+
+</div>

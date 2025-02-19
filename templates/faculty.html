@@ -1,0 +1,35 @@
+<br>
+<a style="float:right" href="/ar/faculty">العربية</a>
+<br>
+<br>
+
+<h3>Faculty members</h3>
+<br>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col">
+            <table style="width:100%">
+                <tr>
+                    <th>Name</th>
+                    <th>Nationality</th>
+                    <th>Academic Rank</th>
+                </tr>
+                {% for user in entry %}
+                    <tr>
+                    <td><a href="/faculty/{{user.id}}">{{user.name}}</a></td>
+                    <td>{{user.nationality}}</td>
+                    <td>{{user.rank}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col">
+        </div>
+
+    </div>
+
+</div>
