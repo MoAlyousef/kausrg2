@@ -1,25 +1,42 @@
 <br>
-<a style="float:right" href="/ar/mission">العربية</a>
-<br>
-<br>
-<h3>
-    Mission of the department
-</h3>
+{% if lang == Language::English %}
+<h3>Mission</h3>
+{% else if lang == Language::Arabic %}
+<h3>الرسالة</h3>
+{% endif %}
 <br>
 <br>
 <p>
-    <ul>
-        <li>
-            Provide continuous medical education to medical students, physicians and nursing.
-        </li>
-        <li>
-            Provide high quality specialized patients care.
-        </li>
-        <li>
-            Share experience with other academic departments.
-        </li>
-        <li>
-            Conduct innovative medical research.
-        </li>
-    </ul>
+    {% if lang == Language::English %}
+<ul>
+    <li>
+        Provide continuous medical education to medical students, physicians and nursing.
+    </li>
+    <li>
+        Provide high quality specialized patients care.
+    </li>
+    <li>
+        Share experience with other academic departments.
+    </li>
+    <li>
+        Conduct innovative medical research.
+    </li>
+</ul>
+{% else if lang == Language::Arabic %}
+<ul style="justify-items: right;">
+    <li>
+        التعليم الطبي المستمر للطلاب والأطباء وهيئة التمريض.
+    </li>
+    <li>
+        الرعاية الطبية المتخصصة للمرضى المحولين إلى القسم الداخلي.
+    </li>
+    <li>
+        تبادل الخبرات مع الأقسام الأكاديمية الأخرى .
+    </li>
+    <li>
+        إجراء البحوث في مجالات التخصص.
+    </li>
+</ul>
+{% endif %}
+
 </p>

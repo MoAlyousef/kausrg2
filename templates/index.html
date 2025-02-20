@@ -1,12 +1,14 @@
 <br>
-<a style="float:right" href="/ar/">العربية</a>
-<br>
 <br>
 
 <div>
-    <div>
-        <h3>The General Surgery Department at King Abdulaziz University</h3>
-        <img src="/static/kauh.jpg" />
+    <div style="justify-items: center;">
+        {% if lang == Language::English %}
+        <h3 style="text-align: center;">The General Surgery Department at King Abdulaziz University</h3>
+        {% else if lang == Language::Arabic %}
+        <h3 style="text-align: center;">قسم الجراحة العامة بجامعة الملك عبدالعزيز</h3>
+        {% endif %}
+        <img src="/assets/kauh.jpg" />
     </div>
 </div>
 
@@ -15,6 +17,7 @@
 <div>
 
     <p>
+        {% if lang == Language::English %}
         The Department of Surgery is an important clinical department that has existed since the inception of the
         college of medicine in 1975. The Department provides continuous services through specialized outpatient clinics
         and general clinics through which surgical cases are referred. The Department also provides services 24 hours a
@@ -23,5 +26,16 @@
         surgery, and neurosurgery, all of which play a prominent role both for patients and in medical education. The
         department also provides surgical care to outpatients. In addition, the department provides clinical training
         for medical, nursing, and dental students, interns, residents and fellows.
+        {% else if lang == Language::Arabic %}
+        قسم الجراحة من الأقسام السريرية الهامة التي عاصرت الكلية منذ انشائها عام 1975. ويقدم القسم خدماته المستمرة عن
+        طريق العيادات الخارجية المتخصصة والعيادات العامة التي يتم تحويل الحالات الجراحية عن طريقها أيضاً . كما يقدم
+        القسم خدماته على مدى 24 ساعة يومياً طوال أيام الأسبوع لإسعاف الحالات الطارئة وإصابات الحوادث ، ويضم القسم
+        بالإضافه إلى الجراحة العامة شعباً تخصصية دقيقة مثل جراحة التجميل ، وجراحة القلب والصدر والأوعية الدموية ، وجراحة
+        الأطفال ، وجراحة المخ والأعصاب وكلها تؤدي دورا مرموقا سواء بالنسبة للمرضى او في مجال التعليم الطبي . وفي عام
+        1411هـ تم فصل شعب التخدير والعيون والمسالك البولية والعظام لتصبح أقساماً مستقله .كما يرعى القسم مرضى العيادات
+        الخارجية ويقوم أعضاء هيئة التدريس بإجراء العمليات الجراحية المختلفة ، بالإضافة إلى هذا فإن القسم يعطي فرصة
+        التدريب السريري لطلبة وطالبات الطب وطب الأسنان وأطباء الأمتياز وطلاب الدراسات العليا وهيئة التمريض في السنوات
+        النهائية ويقوم أعضاء هيئة التدريس بإجراء البحوث في مجالات التخصص.
+        {% endif %}
     </p>
 </div>

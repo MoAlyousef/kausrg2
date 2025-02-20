@@ -1,46 +1,16 @@
-<a class="btn btn-success btn-sm" style="float:right" href="/ar/divisions/ts.html">العربية</a>
-<br>
-<br>
-<h3>
-    About the division
-</h3>
-<br>
-<br>
+{% if lang == Language::English %}
+<h3 style="text-align: center;">Thoracic Surgery Division</h3>
+{% else if lang == Language::Arabic %}
+<h3 style="text-align: center;">شعبة جراحة الصدر</h3>
+{% endif %}
+
 <p>
+    {% if lang == Language::English %}
     Thoracic surgery is the field of medicine involved in surgical treatment of
     organs inside the thorax (the chest)—generally treatment of conditions of the heart (heart disease) and lungs (lung
     disease).
+    {% else if lang == Language::Arabic %}
+    جراحة الصدر هي مجال طبي يختص بالعلاج الجراحي للأمراض التي تؤثر على الأعضاء داخل القفص الصدري، أي علاج أمراض الرئتين
+    جراحيا.
+    {% endif %}
 </p>
-
-
-<br>
-
-<h3>Division members</h3>
-<br>
-
-<div class="container">
-    <div class="row">
-        <div class="col">
-        </div>
-        <div class="col-12">
-            <table class="table table-striped" style="width:100%">
-                <tr>
-                    <th>Name</th>
-                    <th>Nationality</th>
-                    <th>Academic Rank</th>
-                </tr>
-                {% for user in entry %}
-                <tr>
-                <td><a href="/faculty/{{user.id}}">{{user.name}}</a></td>
-                <td>{{user.nationality}}</td>
-                <td>{{user.rank}}</td>
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
-        <div class="col">
-        </div>
-
-    </div>
-
-</div>

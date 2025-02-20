@@ -1,8 +1,4 @@
 <br>
-<a style="float:right" href=/ar/faculty/{{entry.id}}>العربية</a>
-<br>
-<br>
-
 <h3>{{entry.name}}</h3>
 <br>
 <br>
@@ -14,20 +10,36 @@
         <div class="col">
             <table style="width:100%">
                 <tr>
+                    {% if lang == Language::English %}
                     <th>Name</th>
+                    {% else if lang == Language::Arabic %}
+                    <th>الاسم</th>
+                    {% endif %}
                     <td>{{entry.name}}</td>
                 </tr>
                 <tr>
+                    {% if lang == Language::English %}
                     <th>Nationality</th>
+                    {% else if lang == Language::Arabic %}
+                    <th>الجنسية</th>
+                    {% endif %}
                     <td>{{entry.nationality}}</td>
-
+                
                 </tr>
                 <tr>
+                    {% if lang == Language::English %}
                     <th>Academic Rank</th>
+                    {% else if lang == Language::Arabic %}
+                    <th>المرتبة الأكاديمية</th>
+                    {% endif %}
                     <td>{{entry.rank}}</td>
                 </tr>
                 <tr>
+                    {% if lang == Language::English %}
                     <th>Division</th>
+                    {% else if lang == Language::Arabic %}
+                    <th>الشعبة</th>
+                    {% endif %}
                     <td>{{entry.division}}</td>
                 </tr>
             </table>

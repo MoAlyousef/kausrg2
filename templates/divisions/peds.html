@@ -1,44 +1,15 @@
-<a class="btn btn-success btn-sm" style="float:right" href="/ar/divisions/peds.html">العربية</a>
-<br>
-<br>
-<h3>
-    About the division
-</h3>
-<br>
-<br>
+{% if lang == Language::English %}
+<h3 style="text-align: center;">Pediatric Surgery Division</h3>
+{% else if lang == Language::Arabic %}
+<h3 style="text-align: center;">شعبة جراحة الأطفال</h3>
+{% endif %}
+
 <p>
+    {% if lang == Language::English %}
     Pediatric surgery is a subspecialty of surgery involving the surgery of fetuses, infants, children, adolescents, and
     young adults.
+    {% else if lang == Language::Arabic %}
+    جراحة الأطفال هو التخصص الفرعي من جراحة تنطوي على عملية جراحية للأجنة والرضع والأطفال والمراهقين، واليافعين . العديد
+    من الجراحين المختصيين يقومون بممارسة طب الأطفال في مستشفيات الأطفال .
+    {% endif %}
 </p>
-
-<br>
-
-<h3>Division members</h3>
-<br>
-
-<div class="container">
-    <div class="row">
-        <div class="col">
-        </div>
-        <div class="col-12">
-            <table class="table table-striped" style="width:100%">
-                <tr>
-                    <th>Name</th>
-                    <th>Nationality</th>
-                    <th>Academic Rank</th>
-                </tr>
-                {% for user in entry %}
-                <tr>
-                <td><a href="/faculty/{{user.id}}">{{user.name}}</a></td>
-                <td>{{user.nationality}}</td>
-                <td>{{user.rank}}</td>
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
-        <div class="col">
-        </div>
-
-    </div>
-
-</div>

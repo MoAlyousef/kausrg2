@@ -3,7 +3,7 @@ use tokio::sync::OnceCell;
 
 #[allow(dead_code)]
 #[derive(Debug)]
-pub struct Record {
+pub struct Data {
     pub id: i64,
     pub namen: Option<String>,
     pub namar: Option<String>,
@@ -18,9 +18,9 @@ pub struct Record {
     pub image: Option<String>,
 }
 
-pub static STAFF: OnceCell<Vec<Record>> = OnceCell::const_new();
+pub static STAFF: OnceCell<Vec<Data>> = OnceCell::const_new();
 
-pub struct RecordEn {
+pub struct Record {
     pub id: i64,
     pub name: String,
     pub nationality: String,
@@ -28,14 +28,18 @@ pub struct RecordEn {
     pub division: String,
 }
 
-impl RecordEn {
-    pub fn from_record(staff: &Record) -> Self {
-        RecordEn {
+impl Record {
+    pub fn from_data(staff: &Data, lang: utils::Language) -> Self {
+        Record {
             id: staff.id,
-            name: staff.namen.clone().unwrap_or(String::new()),
-            nationality: utils::nationality(staff.nat.unwrap_or(1)),
-            rank: utils::rank(staff.rank.unwrap_or(3)),
-            division: utils::division(staff.div.unwrap_or(1)),
+            name: if lang == utils::Language::English {
+                staff.namen.clone().unwrap_or_default()
+            } else {
+                staff.namar.clone().unwrap_or_default()
+            },
+            nationality: utils::nationality(staff.nat.unwrap_or(1), lang),
+            rank: utils::rank(staff.rank.unwrap_or(3), lang),
+            division: utils::division(staff.div.unwrap_or(1), lang),
         }
     }
 }

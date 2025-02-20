@@ -1,0 +1,21 @@
+<br>
+{% if lang == Language::English %}
+<h3>About the division</h3>
+{% else if lang == Language::Arabic %}
+<h3>عن الشعبة</h3>
+{% endif %}
+<br>
+<br>
+
+{{about|safe}}
+
+<br>
+
+{% if lang == Language::English %}
+<h3>Division members</h3>
+{% else if lang == Language::Arabic %}
+<h3>أعضاء الشعبة</h3>
+{% endif %}
+<br>
+
+{{list|safe}}

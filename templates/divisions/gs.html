@@ -1,48 +1,19 @@
-<a class="btn btn-success btn-sm" style="float:right" href="/ar/divisions/gs.html">العربية</a>
-<br>
-<br>
-<h3>
-    About the division
-</h3>
-<br>
-<br>
+{% if lang == Language::English %}
+<h3 style="text-align: center;">General Surgery Division</h3>
+{% else if lang == Language::Arabic %}
+<h3 style="text-align: center;">شعبة الجراحة العامة</h3>
+{% endif %}
+
 <p>
+    {% if lang == Language::English %}
     General surgery is a surgical specialty that focuses on abdominal contents including esophagus, stomach, small
     intestine, large intestine, liver, pancreas, gallbladder, appendix and bile ducts, and often the thyroid gland.
     They also deal with diseases involving the skin, breast, soft tissue,
     trauma, peripheral vascular surgery and hernias and perform endoscopic procedures such as gastroscopy and
     colonoscopy.
+    {% else if lang == Language::Arabic %}
+    الجراحة العامة هي تخصص جراحي يُعنى بما بداخل البطن من أعضاء وأجهزة متضمنة المريء والمعدة والأمعاء الدقيقة والقولون
+    والكبد والبنكرياس والمرارة والقنوات الصفراوية والغدة الدرقية. كما تشمل أيضاً الأمراض المتعلقة بالثدي والأنسجة
+    والفتاق.
+    {% endif %}
 </p>
-
-
-<br>
-
-<h3>Division members</h3>
-<br>
-
-<div class="container">
-        <div class="row">
-            <div class="col">
-            </div>
-            <div class="col-12">
-                <table class="table table-striped" style="width:100%">
-                    <tr>
-                        <th>Name</th>
-                        <th>Nationality</th>
-                        <th>Academic Rank</th>
-                    </tr>              
-                    {% for user in entry %}
-                    <tr>
-                    <td><a href="/faculty/{{user.id}}">{{user.name}}</a></td>
-                    <td>{{user.nationality}}</td>
-                    <td>{{user.rank}}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
-            <div class="col">
-            </div>
-    
-        </div>
-    
-    </div>

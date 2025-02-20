@@ -1,6 +1,8 @@
-use crate::data::{RecordEn, STAFF};
+use crate::data::{Record, STAFF};
 use crate::error::AppError;
-use axum::extract::Path;
+use crate::utils::{language, Language};
+use axum::extract::{OriginalUri, Path};
+use axum::http::Uri;
 use axum::response::{Html, IntoResponse, Response};
 use rinja::Template;
 
@@ -10,10 +12,16 @@ macro_rules! simple {
             #[derive(Template)]
             #[template(path = $path)]
             struct [<$addr Template>] {
+                lang: Language,
             }
-            pub async fn [<$addr:lower>]() -> Result<Response, AppError> {
-                let temp = [<$addr Template>]{};
-                let layout = LayoutTemplate { entry: &temp.render()? };
+            pub async fn [<$addr:lower>](OriginalUri(uri): OriginalUri) -> Result<Response, AppError> {
+                let lang = language(&uri);
+                let temp = [<$addr Template>]{ lang };
+                let layout = LayoutTemplate::new(
+                    lang,
+                    temp.render()?,
+                    &uri
+                );
                 Ok(Html(layout.render()?).into_response())
             }
         }
@@ -25,52 +33,84 @@ macro_rules! division {
         paste::paste! {
             #[derive(Template)]
             #[template(path = $path)]
-            struct [<$addr Template>]<'a> {
-                entry: &'a [RecordEn],
+            struct [<$addr Template>] {
+                lang: Language,
             }
-            pub async fn [<$addr:lower>]() -> Result<Response, AppError> {
-                let mut entry: Vec<RecordEn> = vec![];
+            pub async fn [<$addr:lower>](OriginalUri(uri): OriginalUri) -> Result<Response, AppError> {
+                let lang = language(&uri);
+                let mut entry: Vec<Record> = vec![];
                 for staff in STAFF.get().unwrap() {
                     if let Some(val) = staff.div {
                         if val == $idx {
-                            let r = RecordEn::from_record(staff);
+                            let r = Record::from_data(staff, lang);
                             entry.push(r);
                         }
                     }
                 }
-                let temp = [<$addr Template>] { entry: &entry };
-                let layout = LayoutTemplate {
-                    entry: &temp.render()?,
-                };
+                let temp = [<$addr Template>] { lang };
+                let list = ListTemplate { lang, entry: &entry };
+                let div = DivTemplate { lang, about: &temp.render()?, list: &list.render()? };
+                let layout = LayoutTemplate::new(
+                    lang,
+                    div.render()?,
+                    &uri
+                );
                 Ok(Html(layout.render()?).into_response())
             }
         }
     };
 }
 
-
 #[derive(Template)]
 #[template(path = "../templates/_layout.html")]
-struct LayoutTemplate<'a> {
-    entry: &'a str,
+struct LayoutTemplate {
+    lang: Language,
+    entry: String,
+    corresponding: String,
+}
+
+impl LayoutTemplate {
+    fn new(lang: Language, entry: String, uri: &Uri) -> Self {
+        let corresponding = if lang == Language::English {
+            format!("/ar{}", uri)
+        } else {
+            uri.path().strip_prefix("/ar").unwrap().to_string()
+        };
+        Self {
+            lang,
+            entry,
+            corresponding,
+        }
+    }
 }
 
 #[derive(Template)]
 #[template(path = "../templates/faculty.html")]
 struct FacultyTemplate<'a> {
-    entry: &'a [RecordEn],
-}
-
-#[derive(Template)]
-#[template(path = "../templates/search.html")]
-struct SearchTemplate<'a> {
-    entry: &'a str,
+    lang: Language,
+    list: &'a str,
 }
 
 #[derive(Template)]
 #[template(path = "../templates/_staff.html")]
 struct StaffTemplate<'a> {
-    entry: &'a RecordEn,
+    lang: Language,
+    entry: &'a Record,
+}
+
+#[derive(Template)]
+#[template(path = "../templates/divisions/_division.html")]
+struct DivTemplate<'a> {
+    lang: Language,
+    about: &'a str,
+    list: &'a str,
+}
+
+#[derive(Template)]
+#[template(path = "../templates/_list.html")]
+struct ListTemplate<'a> {
+    lang: Language,
+    entry: &'a [Record],
 }
 
 simple!(Index, "../templates/index.html");
@@ -86,20 +126,30 @@ division!(Vs, "../templates/divisions/vs.html", 5);
 division!(Pls, "../templates/divisions/pls.html", 6);
 division!(Peds, "../templates/divisions/peds.html", 7);
 
-pub async fn faculty() -> Result<Response, AppError> {
-    let mut entry: Vec<RecordEn> = vec![];
+pub async fn faculty(OriginalUri(uri): OriginalUri) -> Result<Response, AppError> {
+    let lang = language(&uri);
+    let mut entry: Vec<Record> = vec![];
     for staff in STAFF.get().unwrap() {
-        let r = RecordEn::from_record(staff);
+        let r = Record::from_data(staff, lang);
         entry.push(r);
     }
-    let temp = FacultyTemplate { entry: &entry };
-    let layout = LayoutTemplate {
-        entry: &temp.render()?,
+    let list = ListTemplate {
+        lang,
+        entry: &entry,
     };
+    let temp = FacultyTemplate {
+        lang,
+        list: &list.render()?,
+    };
+    let layout = LayoutTemplate::new(lang, temp.render()?, &uri);
     Ok(Html(layout.render()?).into_response())
 }
 
-pub async fn staff(Path(user_id): Path<String>) -> Result<Response, AppError> {
+pub async fn staff(
+    Path(user_id): Path<String>,
+    OriginalUri(uri): OriginalUri,
+) -> Result<Response, AppError> {
+    let lang = language(&uri);
     let staff = STAFF.get().unwrap();
     let idx = user_id.parse::<usize>()?;
     let idx = if idx > 0 && idx <= staff.len() {
@@ -108,18 +158,11 @@ pub async fn staff(Path(user_id): Path<String>) -> Result<Response, AppError> {
         1
     };
     let staff = &staff[idx - 1];
-    let entry = RecordEn::from_record(staff);
-    let temp = StaffTemplate { entry: &entry };
-    let layout = LayoutTemplate {
-        entry: &temp.render()?,
+    let entry = Record::from_data(staff, lang);
+    let temp = StaffTemplate {
+        lang,
+        entry: &entry,
     };
-    Ok(Html(layout.render()?).into_response())
-}
-
-pub async fn search() -> Result<Response, AppError> {
-    let temp = SearchTemplate { entry: "Some name" };
-    let layout = LayoutTemplate {
-        entry: &temp.render()?,
-    };
+    let layout = LayoutTemplate::new(lang, temp.render()?, &uri);
     Ok(Html(layout.render()?).into_response())
 }

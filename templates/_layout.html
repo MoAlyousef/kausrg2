@@ -1,76 +1,131 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/static/htmx.min.js"></script>
+    <script src="/assets/htmx.min.js"></script>
     <link rel="stylesheet" href="https://classless.de/classless.css">
+    {% if lang == Language::English %}
     <title>KAU Surgery</title>
+    {% else if lang == Language::Arabic %}
+    <title>جراحة جامعة الملك عبدالعزيز</title>
+    {% endif %}
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+    </style>
 </head>
 
+{% if lang == Language::English %}
+
 <body>
+    {% else if lang == Language::Arabic %}
+
+    <body dir="rtl" lang="ar"></body>
+    {% endif %}
     <header>
-        <nav>
-            <div>
-                <ul>
-                    <li><a href="/">
-                            <img src="/static/favicon.png" width="30" height="30" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/">Home</a>
-                    </li>
-                    <li>
-                        <a href="/about">About</a>
-                    </li>
-                    <li>
-                        <a href="/mission">Mission</a>
-                    </li>
-                    <li>
-                        <a href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            Divisions
-                        </a>
-                        <ul>
-                            <li><a href="/divisions/gs">General Surgery</a></li>
-                            <li><a href="/divisions/ns">Neurosurgery</a></li>
-                            <li><a href="/divisions/cs">Cardiac Surgery</a></li>
-                            <li><a href="/divisions/ts">Thoracic surgery</a></li>
-                            <li><a href="/divisions/vs">Vascular surgery</a></li>
-                            <li><a href="/divisions/pls">Plastic surgery</a></li>
-                            <li><a href="/divisions/peds">Pediatric surgery</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="/faculty">Faculty</a>
-                    </li>
-                    <li>
-                        <a href="/contact">Contact</a>
-                    </li>
-                    <li class="float-right sticky">
-                        <form method="POST">
-                            <input type="text" placeholder="Search..." name="search">
-                            </input>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        {% if lang == Language::English %}
+        <nav style="justify-items: left;">
+            {% else if lang == Language::Arabic %}
+            <nav style="justify-items: right;">
+                {% endif %}
+                <div>
+                    <ul>
+                        <li><a href="/">
+                                <img src="/assets/favicon.png" width="30" height="30" alt="">
+                            </a>
+                        </li>
+                        {% if lang == Language::English %}
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        <li>
+                            <a href="/about">About</a>
+                        </li>
+                        <li>
+                            <a href="/mission">Mission</a>
+                        </li>
+                        {% else if lang == Language::Arabic %}
+                        <li>
+                            <a href="/ar/">الرئيسية</a>
+                        </li>
+                        <li>
+                            <a href="/ar/about">عن القسم</a>
+                        </li>
+                        <li>
+                            <a href="/ar/mission">الرسالة</a>
+                        </li>
+                        {% endif %}
+                        <li>
+                            <a href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                {% if lang == Language::English %}
+                                Divisions
+                                {% else if lang == Language::Arabic %}
+                                الشعب
+                                {% endif %}
+                            </a>
+                            <ul>
+                                {% if lang == Language::English %}
+                                <li><a href="/divisions/gs">General Surgery</a></li>
+                                <li><a href="/divisions/ns">Neurosurgery</a></li>
+                                <li><a href="/divisions/cs">Cardiac Surgery</a></li>
+                                <li><a href="/divisions/ts">Thoracic surgery</a></li>
+                                <li><a href="/divisions/vs">Vascular surgery</a></li>
+                                <li><a href="/divisions/pls">Plastic surgery</a></li>
+                                <li><a href="/divisions/peds">Pediatric surgery</a></li>
+                                {% else if lang == Language::Arabic %}
+                                <li><a href="/ar/divisions/gs">الجراحة العامة</a></li>
+                                <li><a href="/ar/divisions/ns">جراحة المخ والأعصاب</a></li>
+                                <li><a href="/ar/divisions/cs">جراحة القلب</a></li>
+                                <li><a href="/ar/divisions/ts">جراحة الصدر</a></li>
+                                <li><a href="/ar/divisions/vs">جراحة الأوعية الدموية</a></li>
+                                <li><a href="/ar/divisions/pls">جراحة التجميل</a></li>
+                                <li><a href="/ar/divisions/peds">جراحة الأطفال</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                        <li>
+                            {% if lang == Language::English %}
+                            <a href="/faculty">Faculty</a>
+                            {% else if lang == Language::Arabic %}
+                            <a href="/ar/faculty">القسم</a>
+                            {% endif %}
+                        </li>
+                        <li>
+                            {% if lang == Language::English %}
+                            <a href="/contact">Contact</a>
+                            {% else if lang == Language::Arabic %}
+                            <a href="/ar/contact">اتصل بنا</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </nav>
     </header>
     <div>
         <main role="main">
             <p>
                 <br>
+                {% if lang == Language::English %}
+                <a style="float:right" href="{{ corresponding|safe }}">العربية</a>
+                {% else if lang == Language::Arabic %}
+                <a style="float:left" href="{{ corresponding|safe }}">English</a>
+                {% endif %}
                 {{entry|safe}}
             </p>
         </main>
     </div>
 
     <footer>
+        {% if lang == Language::English %}
         <div>
             &copy; 2019 - KAU Surgery - <a href="/privacy">Privacy</a>
         </div>
+        {% else if lang == Language::Arabic %}
+        <div style="text-align: right; direction: rtl;">
+            &copy; 2019 - جراحة جامعة الملك عبدالعزيز - <a href="/ar/privacy">الخصوصية</a>
+        </div>
+        {% endif %}
     </footer>
 </body>
 

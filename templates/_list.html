@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col-12">
+            <table class="table table-striped" style="width:100%">
+                <tr>
+                    {% if lang == Language::English %}
+                    <th>Name</th>
+                    <th>Nationality</th>
+                    <th>Academic Rank</th>
+                    {% else if lang == Language::Arabic %}
+                    <th style="text-align: right;">الاسم</th>
+                    <th>الجنسية</th>
+                    <th>المرتبة الأكاديمية</th>
+                    {% endif %}
+                </tr>
+                {% for user in entry %}
+                <tr>
+                    {% if lang == Language::English %}
+                    <td><a href="/faculty/{{user.id}}">{{user.name}}</a></td>
+                    {% else if lang == Language::Arabic %}
+                    <td style="text-align: right;"><a href="/ar/faculty/{{user.id}}">{{user.name}}</a></td>
+                    {% endif %}
+                    <td>{{user.nationality}}</td>
+                    <td>{{user.rank}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col">
+        </div>
+
+    </div>
+
+</div>

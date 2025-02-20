@@ -1,31 +1,48 @@
 <br>
-<a style="float:right" href="/ar/contact">العربية</a>
-<br>
-<br>
-<h3>
-    Contact us
-</h3>
+{% if lang == Language::English %}
+<h3>Contact us</h3>
+{% else if lang == Language::Arabic %}
+<h3>تواصل معنا</h3>
+{% endif %}
 <br>
 <br>
 <section>
-    <div class="container">
-        <div class="row">
-            <div>
-              <div>
-                Phone:  <a href="#">012-640 8207</a>
-                <br>
-                Phone:  <a href="#">012-640 8209</a>
-                <br>
-                Phone:  <a href="#">012-640 000</a> Ext: <a href="#">20483</a>
-              </div>
-              <div>
-                Email:  <a href="#">med.surgery@kau.edu.sa</a>
-              </div>
-              <br>
-              <div>
-                 Working hours: <a href="#">Sun to Fri: 08:30 AM - 03:30 PM</a>
-              </div>
-            </div>
+  <div class="container">
+    <div class="col">
+      <div>
+        {% if lang == Language::English %}
+        <div>
+          Phone: <a href="#">012-640 8207</a>
+          <br>
+          Phone: <a href="#">012-640 8209</a>
+          <br>
+          Phone: <a href="#">012-640 000</a> Ext: <a href="#">20483</a>
         </div>
+        <div>
+          Email: <a href="#">med.surgery@kau.edu.sa</a>
+        </div>
+        <br>
+        <div>
+          Working hours: <a href="#">Sun to Fri: 08:30 AM - 03:30 PM</a>
+        </div>
+        {% else if lang == Language::Arabic %}
+        <div class="arabic">
+          هاتف: <a href="#">0126408207</a>
+          <br>
+          هاتف: <a href="#">0126408209</a>
+          <br>
+          هاتف: <a href="#">012640000</a> تحويلة: <a href="#">20483</a>
+        </div>
+
+        <div class="arabic">
+          بريد إليكتروني: <a href="#">med.surgery@kau.edu.sa</a>
+        </div>
+        <br>
+        <div class="arabic">
+          ساعات العمل: <a href="#">الأحد إلى الجمعة: 08:30 صباحا - 03:30 عصرا</a>
+        </div>
+        {% endif %}
+      </div>
     </div>
-  </section>
+  </div>
+</section>

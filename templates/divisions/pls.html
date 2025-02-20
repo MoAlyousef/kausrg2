@@ -1,48 +1,20 @@
-<a class="btn btn-success btn-sm" style="float:right" href="/ar/divisions/pls.html">العربية</a>
-<br>
-<br>
-<h3>
-    About the division
-</h3>
-<br>
-<br>
+{% if lang == Language::English %}
+<h3 style="text-align: center;">Plastic Surgery Division</h3>
+{% else if lang == Language::Arabic %}
+<h3 style="text-align: center;">شعبة جراحة التجميل</h3>
+{% endif %}
+
 <p>
+    {% if lang == Language::English %}
     Plastic surgery is a surgical specialty involving the restoration, reconstruction, or alteration of the human body.
     It can be divided into two categories. The first is reconstructive surgery which includes craniofacial surgery, hand
     surgery, microsurgery, and the treatment of burns. The other is cosmetic or aesthetic surgery. While
     reconstructive surgery aims to reconstruct a part of the body or improve its functioning, cosmetic surgery aims at
     improving the appearance of it.
+    {% else if lang == Language::Arabic %}
+    الجراحة التجميلية هي تخصص جراحي يتضمن ترميم جسم الإنسان وإعادة بنائه أو تغييره. يمكن تقسيمها إلى فئتين. الأول هو
+    الجراحة الترميمية التي تشمل جراحة القحف الوجهي وجراحة اليد والجراحة المجهرية وعلاج الحروق. والآخر هو الجراحة
+    التجميلية أو الجمالية. بينما تهدف الجراحة الترميمية إلى إعادة بناء جزء من الجسم أو تحسين أدائه ، تهدف الجراحة
+    التجميلية إلى تحسين مظهره.
+    {% endif %}
 </p>
-
-
-<br>
-
-<h3>Division members</h3>
-<br>
-
-<div class="container">
-    <div class="row">
-        <div class="col">
-        </div>
-        <div class="col-12">
-            <table class="table table-striped" style="width:100%">
-                <tr>
-                    <th>Name</th>
-                    <th>Nationality</th>
-                    <th>Academic Rank</th>
-                </tr>
-                {% for user in entry %}
-                <tr>
-                <td><a href="/faculty/{{user.id}}">{{user.name}}</a></td>
-                <td>{{user.nationality}}</td>
-                <td>{{user.rank}}</td>
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
-        <div class="col">
-        </div>
-
-    </div>
-
-</div>

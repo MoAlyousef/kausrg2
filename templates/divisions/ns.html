@@ -1,45 +1,16 @@
-<a class="btn btn-success btn-sm" style="float:right" href="/ar/divisions/ns.html">العربية</a>
-<br>
-<br>
-<h3>
-    About the division
-</h3>
-<br>
-<br>
+{% if lang == Language::English %}
+<h3 style="text-align: center;">Neurosurgery Division</h3>
+{% else if lang == Language::Arabic %}
+<h3 style="text-align: center;">شعبة جراحة المخ والأعصاب</h3>
+{% endif %}
+
 <p>
+    {% if lang == Language::English %}
     Neurosurgery, or neurological surgery, is the medical specialty concerned with the prevention, diagnosis, surgical
     treatment, and rehabilitation of disorders which affect any portion of the nervous system including the brain,
     spinal cord, peripheral nerves, and extra-cranial cerebrovascular system
+    {% else if lang == Language::Arabic %}
+    جراحة الأعصاب أو الجراحة العصبية (بالإنجليزية: neurosurgery) هو تخصص دقيق من تخصصات الطب. ويُعنى بأمراض الجهاز
+    العصبي المركزي والجهاز العصبي المحيطي وعلاجها بالتدخل الجراحي ويسمى المتخصص بهذا التخصص جراح مخ وأعصاب.
+    {% endif %}
 </p>
-
-<br>
-
-<h3>Division members</h3>
-<br>
-
-<div class="container">
-    <div class="row">
-        <div class="col">
-        </div>
-        <div class="col-12">
-            <table class="table table-striped" style="width:100%">
-                <tr>
-                    <th>Name</th>
-                    <th>Nationality</th>
-                    <th>Academic Rank</th>
-                </tr>
-                {% for user in entry %}
-                    <tr>
-                    <td><a href="/faculty/{{user.id}}">{{user.name}}</a></td>
-                    <td>{{user.nationality}}</td>
-                    <td>{{user.rank}}</td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-        <div class="col">
-        </div>
-
-    </div>
-
-</div>
