@@ -1,34 +1,35 @@
-<div class="container">
-    <div class="row">
-        <div class="col">
+<div>
+    <div class="flex-row">
+        <div class="flex-col">
         </div>
-        <div class="col-12">
-            <table class="table table-striped" style="width:100%">
-                <tr>
+        <div>
+            <table class="w-full text-sm text-left rtl:text-right">
+                <tr class="bg-gray-500 border-b  border-gray-200">
                     {% if lang == Language::English %}
-                    <th>Name</th>
-                    <th>Nationality</th>
-                    <th>Academic Rank</th>
+                    <th class="px-6 py-2">Name</th>
+                    <th class="px-6 py-2">Nationality</th>
+                    <th class="px-6 py-2">Academic Rank</th>
                     {% else if lang == Language::Arabic %}
-                    <th style="text-align: right;">الاسم</th>
-                    <th>الجنسية</th>
-                    <th>المرتبة الأكاديمية</th>
+                    <th class="px-6 py-2" style="text-align: right;">الاسم</th>
+                    <th class="px-6 py-2">الجنسية</th>
+                    <th class="px-6 py-2">المرتبة الأكاديمية</th>
                     {% endif %}
                 </tr>
                 {% for user in entry %}
-                <tr>
+                <tr class="odd:bg-white even:bg-gray-50 border-b  border-gray-200">
                     {% if lang == Language::English %}
-                    <td><a href="/faculty/{{user.id}}">{{user.name}}</a></td>
+                    <td class="px-6 py-2"><a class="text-blue-600" href="/faculty/{{user.id}}">{{user.name}}</a></td>
                     {% else if lang == Language::Arabic %}
-                    <td style="text-align: right;"><a href="/ar/faculty/{{user.id}}">{{user.name}}</a></td>
+                    <td class="px-6 py-2" style="text-align: right;"><a class="text-blue-600" href="/ar/faculty/{{user.id}}">{{user.name}}</a>
+                    </td>
                     {% endif %}
-                    <td>{{user.nationality}}</td>
-                    <td>{{user.rank}}</td>
+                    <td class="px-6 py-2">{{user.nationality}}</td>
+                    <td class="px-6 py-2">{{user.rank}}</td>
                 </tr>
                 {% endfor %}
             </table>
         </div>
-        <div class="col">
+        <div class="flex-col">
         </div>
 
     </div>
