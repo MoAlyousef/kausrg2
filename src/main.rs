@@ -2,7 +2,6 @@ use anyhow::Result;
 use axum::routing::get;
 use axum::Router;
 use sqlx::sqlite::SqlitePool;
-use std::env;
 use tower_http::services::ServeDir;
 
 mod data;
@@ -14,12 +13,10 @@ use routes::*;
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    let pool = SqlitePool::connect(&env::var("DATABASE_URL")?).await?;
-    let staffs = sqlx::query_as!(data::Data, r#"SELECT * FROM staff"#)
-        .fetch_all(&pool)
-        .await?;
-    data::STAFF.get_or_init(|| async { staffs }).await;
-
+    let pool = SqlitePool::connect("sqlite:db/staff.db").await?;
+    let s: Vec<data::Data> = sqlx::query_as(r#"SELECT * FROM staff"#).fetch_all(&pool).await?;
+    data::STAFF.get_or_init(|| async { s }).await;
+    
     let divisions_routes = Router::new()
         .route("/gs", get(gs))
         .route("/ns", get(ns))

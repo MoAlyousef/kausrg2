@@ -2,7 +2,7 @@ use crate::utils;
 use tokio::sync::OnceCell;
 
 #[allow(dead_code)]
-#[derive(Debug)]
+#[derive(Debug, sqlx::FromRow)]
 pub struct Data {
     pub id: i64,
     pub namen: Option<String>,
