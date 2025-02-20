@@ -95,6 +95,7 @@ struct FacultyTemplate<'a> {
 #[template(path = "../templates/_staff.html")]
 struct StaffTemplate<'a> {
     lang: Language,
+    title: &'a str,
     entry: &'a Record,
 }
 
@@ -159,8 +160,20 @@ pub async fn staff(
     };
     let staff = &staff[idx - 1];
     let entry = Record::from_data(staff, lang);
+    let title = if entry.rank == "Professor" {
+        if lang == Language::English {
+            "Prof"
+        } else {
+            "أ"
+        }
+    } else if lang == Language::English {
+        "Dr"
+    } else {
+        "د"
+    };
     let temp = StaffTemplate {
         lang,
+        title,
         entry: &entry,
     };
     let layout = LayoutTemplate::new(lang, temp.render()?, &uri);

@@ -16,12 +16,10 @@
 </head>
 
 {% if lang == Language::English %}
-
 <body>
-    {% else if lang == Language::Arabic %}
-
-    <body dir="rtl" lang="ar"></body>
-    {% endif %}
+{% else if lang == Language::Arabic %}
+<body dir="rtl">
+{% endif %}
     <header>
         <div class="px-4 mx-auto max-w-7xl sm:px-6">
             <div class="relative pt-6 pb-16 sm:pb-24">
@@ -171,10 +169,10 @@
                     {% if lang == Language::English %}
                     <ul id="mobile-menu" class="hidden absolute top-8 right-4 z-50 w-auto bg-white p-4 shadow-md 
                          rounded-md flex-col space-y-2 md:hidden">
-                        {% else if lang == Language::Arabic %}
-                        <ul id="mobile-menu" class="hidden absolute top-8 left-4 z-50 w-auto bg-white p-4 shadow-md 
-                         rounded-md flex-col space-y-2 md:hidden">
-                            {% endif %}
+                    {% else if lang == Language::Arabic %}
+                    <ul id="mobile-menu" class="hidden absolute top-8 left-4 z-50 w-auto bg-white p-4 shadow-md 
+                    rounded-md flex-col space-y-2 md:hidden">
+                    {% endif %}
                             <!-- Existing mobile menu items -->
                             <li>
                                 {% if lang == Language::English %}
@@ -309,15 +307,13 @@
 
     <footer class="mt-8">
         <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
-        {% if lang == Language::English %}
-        <span class="block text-sm text-gray-500 sm:text-center">
+        <span class="block text-sm text-gray-500 text-center">
+            {% if lang == Language::English %}
             &copy; 2019 - KAU Surgery - <a class="text-blue-600" href="/privacy">Privacy</a>
-        </span>
-        {% else if lang == Language::Arabic %}
-        <span class="block text-sm text-gray-500 sm:text-center" style="direction: rtl;">
+            {% else if lang == Language::Arabic %}
             &copy; 2019 - جراحة جامعة الملك عبدالعزيز - <a class="text-blue-600" href="/ar/privacy">الخصوصية</a>
+            {% endif %}
         </span>
-        {% endif %}
     </footer>
 
     <script>

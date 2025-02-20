@@ -14,9 +14,11 @@ use routes::*;
 #[tokio::main]
 async fn main() -> Result<()> {
     let pool = SqlitePool::connect("sqlite:db/staff.db").await?;
-    let s: Vec<data::Data> = sqlx::query_as(r#"SELECT * FROM staff"#).fetch_all(&pool).await?;
+    let s: Vec<data::Data> = sqlx::query_as(r#"SELECT * FROM staff"#)
+        .fetch_all(&pool)
+        .await?;
     data::STAFF.get_or_init(|| async { s }).await;
-    
+
     let divisions_routes = Router::new()
         .route("/gs", get(gs))
         .route("/ns", get(ns))

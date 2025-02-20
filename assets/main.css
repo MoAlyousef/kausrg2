@@ -544,9 +544,6 @@
   .top-8 {
     top: calc(var(--spacing) * 8);
   }
-  .top-16 {
-    top: calc(var(--spacing) * 16);
-  }
   .top-full {
     top: 100%;
   }
@@ -695,8 +692,8 @@
   .bg-gray-50 {
     background-color: var(--color-gray-50);
   }
-  .bg-gray-500 {
-    background-color: var(--color-gray-500);
+  .bg-gray-400 {
+    background-color: var(--color-gray-400);
   }
   .bg-white {
     background-color: var(--color-white);
@@ -722,8 +719,14 @@
   .pb-16 {
     padding-bottom: calc(var(--spacing) * 16);
   }
+  .text-center {
+    text-align: center;
+  }
   .text-left {
     text-align: left;
+  }
+  .text-right {
+    text-align: right;
   }
   .text-2xl {
     font-size: var(--text-2xl);
@@ -861,11 +864,6 @@
   .sm\:pb-24 {
     @media (width >= 40rem) {
       padding-bottom: calc(var(--spacing) * 24);
-    }
-  }
-  .sm\:text-center {
-    @media (width >= 40rem) {
-      text-align: center;
     }
   }
   .md\:absolute {

@@ -1,5 +1,5 @@
 <br>
-<h3>{{entry.name}}</h3>
+<h3 class="text-1xl m-4 font-bold">{{title}}. {{entry.name}}</h3>
 <br>
 <br>
 
@@ -11,36 +11,36 @@
             <table class="w-full text-sm text-left rtl:text-right">
                 <tr>
                     {% if lang == Language::English %}
-                    <th>Name</th>
+                    <th class="bg-gray-400 border-b  border-gray-200 px-6 py-2">Name</th>
                     {% else if lang == Language::Arabic %}
-                    <th>الاسم</th>
+                    <th class="bg-gray-400 border-b  border-gray-200 px-6 py-2">الاسم</th>
                     {% endif %}
-                    <td>{{entry.name}}</td>
+                    <td class="px-6 py-2">{{entry.name}}</td>
                 </tr>
                 <tr>
                     {% if lang == Language::English %}
-                    <th>Nationality</th>
+                    <th class="bg-gray-400 border-b  border-gray-200 px-6 py-2">Nationality</th>
                     {% else if lang == Language::Arabic %}
-                    <th>الجنسية</th>
+                    <th class="bg-gray-400 border-b  border-gray-200 px-6 py-2">الجنسية</th>
                     {% endif %}
-                    <td>{{entry.nationality}}</td>
+                    <td class="px-6 py-2">{{entry.nationality}}</td>
                 
                 </tr>
                 <tr>
                     {% if lang == Language::English %}
-                    <th>Academic Rank</th>
+                    <th class="bg-gray-400 border-b  border-gray-200 px-6 py-2">Academic Rank</th>
                     {% else if lang == Language::Arabic %}
-                    <th>المرتبة الأكاديمية</th>
+                    <th class="bg-gray-400 border-b  border-gray-200 px-6 py-2">المرتبة الأكاديمية</th>
                     {% endif %}
-                    <td>{{entry.rank}}</td>
+                    <td class="px-6 py-2">{{entry.rank}}</td>
                 </tr>
                 <tr>
                     {% if lang == Language::English %}
-                    <th>Division</th>
+                    <th class="bg-gray-400 border-b  border-gray-200 px-6 py-2">Division</th>
                     {% else if lang == Language::Arabic %}
-                    <th>الشعبة</th>
+                    <th class="bg-gray-400 border-b  border-gray-200 px-6 py-2">الشعبة</th>
                     {% endif %}
-                    <td>{{entry.division}}</td>
+                    <td class="px-6 py-2">{{entry.division}}</td>
                 </tr>
             </table>
         </div>
