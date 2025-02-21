@@ -6,7 +6,7 @@ fn main() {
     let output = format!("{dir}/assets/main.css");
 
     let result = std::process::Command::new("npx")
-        .args(["@tailwindcss/cli", "-i", &input, "-o", &output])
+        .args(["@tailwindcss/cli", "-i", &input, "-o", &output, "--minify"])
         .output()
         .expect("Unable to generate css");
 

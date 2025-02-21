@@ -7,8 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/assets/htmx.min.js"></script>
-    <link rel="stylesheet" href="/assets/main.css">
+    <script src="/htmx.min.js"></script>
+    <link rel="stylesheet" href="/main.css">
     {% if lang == Language::English %}
     <title>KAU Surgery</title>
     {% else if lang == Language::Arabic %}
@@ -28,23 +28,22 @@
 {% endif %}
     <header>
         <div class="px-4 mx-auto max-w-7xl sm:px-6">
-            <div class="relative pt-6 pb-16 sm:pb-24">
+            <div class="relative pt-6 pb-4 sm:pb-8">
                 <nav class="relative flex items-center justify-between sm:h-10 md:justify-center" aria-label="Global">
-                    <!-- Left section: Logo + Hamburger -->
                     <div class="flex items-center justify-between w-full md:w-auto">
-                        <!-- Logo -->
                         {% if lang == Language::English %}
                         <a href="/" class="flex items-center m-6">
                         {% else if lang == Language::Arabic %}
                         <a href="/ar/" class="flex items-center m-6">
                         {% endif %}
-                            <img src="/assets/favicon.png" alt="KAU Surgery Logo" class="h-8 sm:h-10 w-auto" />
+                            <img src="/favicon.png" alt="KAU Surgery Logo" class="h-8 sm:h-10 w-auto" />
                         </a>
-                        <!-- Hamburger (hidden on md and above) -->
-                        <div class="flex items-center -mr-2 md:hidden">
-                            <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 text-gray-400 bg-gray-50 rounded-md 
-                            hover:text-gray-500 hover:bg-gray-100 focus:outline-none 
-                            focus:ring-2 focus:ring-inset focus:ring-gray-50" type="button" aria-expanded="false">
+                        <div class="md:hidden relative group">
+                            <button
+                                class="inline-flex items-center justify-center p-2 text-gray-400 bg-gray-50 rounded-md 
+                                hover:text-gray-500 hover:bg-gray-100 focus:outline-none 
+                                focus:ring-2 focus:ring-inset focus:ring-gray-50"
+                                type="button" aria-expanded="false" tabindex="0">
                                 <span class="sr-only">Open main menu</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-6 h-6">
@@ -52,12 +51,124 @@
                                         d="M4 6h16M4 12h16M4 18h16" />
                                 </svg>
                             </button>
+
+                            {% if lang == Language::English %}
+                            <ul class="hidden group-hover:block group-focus-within:block absolute top-8 right-4 z-50 
+                                       w-auto bg-white p-4 shadow-md rounded-md flex-col space-y-2 md:hidden">
+                            {% else if lang == Language::Arabic %}
+                            <ul class="hidden group-hover:block group-focus-within:block absolute top-8 left-4 z-50 
+                                       w-auto bg-white p-4 shadow-md rounded-md flex-col space-y-2 md:hidden">
+                            {% endif %}
+                                <li>
+                                    {% if lang == Language::English %}
+                                    <a href="/" class="text-base text-gray-700 hover:text-gray-900">
+                                        Home
+                                    </a>
+                                    {% else if lang == Language::Arabic %}
+                                    <a href="/ar/" class="text-base text-gray-700 hover:text-gray-900">
+                                        الرئيسية
+                                    </a>
+                                    {% endif %}
+                                </li>
+                                <li>
+                                    {% if lang == Language::English %}
+                                    <a href="/about" class="text-base text-gray-700 hover:text-gray-900">
+                                        About
+                                    </a>
+                                    {% else if lang == Language::Arabic %}
+                                    <a href="/ar/about" class="text-base text-gray-700 hover:text-gray-900">
+                                        عن القسم
+                                    </a>
+                                    {% endif %}
+                                </li>
+                                <li>
+                                    {% if lang == Language::English %}
+                                    <a href="/mission" class="text-base text-gray-700 hover:text-gray-900">
+                                        Mission
+                                    </a>
+                                    {% else if lang == Language::Arabic %}
+                                    <a href="/ar/mission" class="text-base text-gray-700 hover:text-gray-900">
+                                        الرسالة
+                                    </a>
+                                    {% endif %}
+                                </li>
+                                <li>
+                                    {% if lang == Language::English %}
+                                    <a href="/faculty" class="text-base text-gray-700 hover:text-gray-900">
+                                        Facutly
+                                    </a>
+                                    {% else if lang == Language::Arabic %}
+                                    <a href="/ar/faculty" class="text-base text-gray-700 hover:text-gray-900">
+                                        القسم
+                                    </a>
+                                    {% endif %}
+                                </li>
+                                <li>
+                                    {% if lang == Language::English %}
+                                    <a href="/contact" class="text-base text-gray-700 hover:text-gray-900">
+                                        Contact
+                                    </a>
+                                    {% else if lang == Language::Arabic %}
+                                    <a href="/ar/contact" class="text-base text-gray-700 hover:text-gray-900">
+                                        اتصل بنا
+                                    </a>
+                                    {% endif %}
+                                </li>
+
+                                <li class="relative group">
+                                    <button type="button"
+                                            class="flex items-center text-base text-gray-700 focus:outline-none"
+                                            aria-haspopup="true" aria-expanded="false" tabindex="0">
+                                        {% if lang == Language::English %}
+                                        Divisions
+                                        {% else if lang == Language::Arabic %}
+                                        الشعب
+                                        {% endif %}
+                                        <svg class="w-4 h-4 ml-1 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 01.02-1.06z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                    <ul class="hidden group-hover:block group-focus-within:block ml-4 mt-2 space-y-1">
+                                        {% if lang == Language::English %}
+                                        <li><a class="block text-gray-700 hover:text-gray-900"
+                                                href="/divisions/gs">General Surgery</a></li>
+                                        <li><a class="block text-gray-700 hover:text-gray-900"
+                                                href="/divisions/ns">Neurosurgery</a></li>
+                                        <li><a class="block text-gray-700 hover:text-gray-900"
+                                                href="/divisions/cs">Cardiac Surgery</a></li>
+                                        <li><a class="block text-gray-700 hover:text-gray-900"
+                                                href="/divisions/ts">Thoracic surgery</a></li>
+                                        <li><a class="block text-gray-700 hover:text-gray-900"
+                                                href="/divisions/vs">Vascular surgery</a></li>
+                                        <li><a class="block text-gray-700 hover:text-gray-900"
+                                                href="/divisions/pls">Plastic surgery</a></li>
+                                        <li><a class="block text-gray-700 hover:text-gray-900"
+                                                href="/divisions/peds">Pediatric surgery</a></li>
+                                        {% else if lang == Language::Arabic %}
+                                        <li><a class="block text-gray-700 hover:text-gray-900"
+                                                href="/ar/divisions/gs">الجراحة العامة</a></li>
+                                        <li><a class="block text-gray-700 hover:text-gray-900"
+                                                href="/ar/divisions/ns">جراحة المخ والأعصاب</a></li>
+                                        <li><a class="block text-gray-700 hover:text-gray-900"
+                                                href="/ar/divisions/cs">جراحة القلب</a></li>
+                                        <li><a class="block text-gray-700 hover:text-gray-900"
+                                                href="/ar/divisions/ts">جراحة الصدر</a></li>
+                                        <li><a class="block text-gray-700 hover:text-gray-900"
+                                                href="/ar/divisions/vs">جراحة الأوعية الدموية</a></li>
+                                        <li><a class="block text-gray-700 hover:text-gray-900"
+                                                href="/ar/divisions/pls">جراحة التجميل</a></li>
+                                        <li><a class="block text-gray-700 hover:text-gray-900"
+                                                href="/ar/divisions/peds">جراحة الأطفال</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
-                    <!-- Desktop menu (visible from md: and above) -->
                     <ul class="hidden md:flex md:space-x-6 list-none">
-                        <!-- Existing menu items -->
                         <li>
                             {% if lang == Language::English %}
                             <a href="/" class="text-base font-normal text-gray-500 hover:text-gray-900">
@@ -114,26 +225,23 @@
                             {% endif %}
                         </li>
 
-                        <!-- NEW: Divisions Dropdown (Desktop) -->
-                        <li class="relative">
-                            <button id="desktop-divisions-button" type="button"
+                        <li class="relative group">
+                            <button type="button"
                                 class="inline-flex items-center text-base font-normal text-gray-500 hover:text-gray-900 focus:outline-none"
-                                aria-haspopup="true" aria-expanded="false">
+                                aria-haspopup="true" aria-expanded="false" tabindex="0">
                                 {% if lang == Language::English %}
                                 Divisions
                                 {% else if lang == Language::Arabic %}
                                 الشعب
                                 {% endif %}
-                                <!-- Optional caret icon -->
                                 <svg class="w-4 h-4 ml-1 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
                                         d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 01.02-1.06z"
                                         clip-rule="evenodd" />
                                 </svg>
                             </button>
-                            <!-- The sub-menu, hidden by default -->
-                            <ul id="desktop-divisions-menu"
-                                class="hidden absolute top-full left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-md z-50">
+                            <ul
+                                class="hidden group-hover:block group-focus-within:block absolute top-full left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-md z-50">
                                 {% if lang == Language::English %}
                                 <li><a class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                                         href="/divisions/gs">General Surgery</a></li>
@@ -168,125 +276,6 @@
                             </ul>
                         </li>
                     </ul>
-
-                    <!-- Mobile menu (hidden by default, absolutely positioned) -->
-                    {% if lang == Language::English %}
-                    <ul id="mobile-menu" class="hidden absolute top-8 right-4 z-50 w-auto bg-white p-4 shadow-md 
-                         rounded-md flex-col space-y-2 md:hidden">
-                    {% else if lang == Language::Arabic %}
-                    <ul id="mobile-menu" class="hidden absolute top-8 left-4 z-50 w-auto bg-white p-4 shadow-md 
-                    rounded-md flex-col space-y-2 md:hidden">
-                    {% endif %}
-                            <!-- Existing mobile menu items -->
-                            <li>
-                                {% if lang == Language::English %}
-                                <a href="/" class="text-base text-gray-700 hover:text-gray-900">
-                                    Home
-                                </a>
-                                {% else if lang == Language::Arabic %}
-                                <a href="/ar/" class="text-base text-gray-700 hover:text-gray-900">
-                                    الرئيسية
-                                </a>
-                                {% endif %}
-                            </li>
-                            <li>
-                                {% if lang == Language::English %}
-                                <a href="/about" class="text-base text-gray-700 hover:text-gray-900">
-                                    About
-                                </a>
-                                {% else if lang == Language::Arabic %}
-                                <a href="/ar/about" class="text-base text-gray-700 hover:text-gray-900">
-                                    عن القسم
-                                </a>
-                                {% endif %}
-                            </li>
-                            <li>
-                                {% if lang == Language::English %}
-                                <a href="/mission" class="text-base text-gray-700 hover:text-gray-900">
-                                    Mission
-                                </a>
-                                {% else if lang == Language::Arabic %}
-                                <a href="/ar/mission" class="text-base text-gray-700 hover:text-gray-900">
-                                    الرسالة
-                                </a>
-                                {% endif %}
-                            </li>
-                            <li>
-                                {% if lang == Language::English %}
-                                <a href="/faculty" class="text-base text-gray-700 hover:text-gray-900">
-                                    Facutly
-                                </a>
-                                {% else if lang == Language::Arabic %}
-                                <a href="/ar/faculty" class="text-base text-gray-700 hover:text-gray-900">
-                                    القسم
-                                </a>
-                                {% endif %}
-                            </li>
-                            <li>
-                                {% if lang == Language::English %}
-                                <a href="/contact" class="text-base text-gray-700 hover:text-gray-900">
-                                    Contact
-                                </a>
-                                {% else if lang == Language::Arabic %}
-                                <a href="/ar/contact" class="text-base text-gray-700 hover:text-gray-900">
-                                    اتصل بنا
-                                </a>
-                                {% endif %}
-                            </li>
-
-                            <!-- NEW: Divisions Dropdown (Mobile) -->
-                            <li>
-                                <button id="mobile-divisions-button" type="button"
-                                    class="flex items-center text-base text-gray-700 focus:outline-none"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    {% if lang == Language::English %}
-                                    Divisions
-                                    {% else if lang == Language::Arabic %}
-                                    الشعب
-                                    {% endif %}
-                                    <!-- Optional caret icon -->
-                                    <svg class="w-4 h-4 ml-1 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd"
-                                            d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 01.02-1.06z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </button>
-                                <!-- Sub-items for Divisions on mobile, hidden by default -->
-                                <ul id="mobile-divisions-menu" class="hidden ml-4 mt-2 space-y-1">
-                                    {% if lang == Language::English %}
-                                    <li><a class="block text-gray-700 hover:text-gray-900" href="/divisions/gs">General
-                                            Surgery</a></li>
-                                    <li><a class="block text-gray-700 hover:text-gray-900"
-                                            href="/divisions/ns">Neurosurgery</a></li>
-                                    <li><a class="block text-gray-700 hover:text-gray-900" href="/divisions/cs">Cardiac
-                                            Surgery</a></li>
-                                    <li><a class="block text-gray-700 hover:text-gray-900" href="/divisions/ts">Thoracic
-                                            surgery</a></li>
-                                    <li><a class="block text-gray-700 hover:text-gray-900" href="/divisions/vs">Vascular
-                                            surgery</a></li>
-                                    <li><a class="block text-gray-700 hover:text-gray-900" href="/divisions/pls">Plastic
-                                            surgery</a></li>
-                                    <li><a class="block text-gray-700 hover:text-gray-900"
-                                            href="/divisions/peds">Pediatric surgery</a></li>
-                                    {% else if lang == Language::Arabic %}
-                                    <li><a class="block text-gray-700 hover:text-gray-900"
-                                            href="/ar/divisions/gs">الجراحة العامة</a></li>
-                                    <li><a class="block text-gray-700 hover:text-gray-900" href="/ar/divisions/ns">جراحة
-                                            المخ والأعصاب</a></li>
-                                    <li><a class="block text-gray-700 hover:text-gray-900" href="/ar/divisions/cs">جراحة
-                                            القلب</a></li>
-                                    <li><a class="block text-gray-700 hover:text-gray-900" href="/ar/divisions/ts">جراحة
-                                            الصدر</a></li>
-                                    <li><a class="block text-gray-700 hover:text-gray-900" href="/ar/divisions/vs">جراحة
-                                            الأوعية الدموية</a></li>
-                                    <li><a class="block text-gray-700 hover:text-gray-900"
-                                            href="/ar/divisions/pls">جراحة التجميل</a></li>
-                                    <li><a class="block text-gray-700 hover:text-gray-900"
-                                            href="/ar/divisions/peds">جراحة الأطفال</a></li>
-                                    {% endif %}
-                                </ul>
-                            </li>
-                        </ul>
                 </nav>
             </div>
         </div>
@@ -295,10 +284,10 @@
         <main role="main">
             <br>
             {% if lang == Language::English %}
-            <a class="text-blue-600 dark:text-blue-500 hover:underline" style="float:right"
+            <a class="text-blue-600 dark:text-blue-500 hover:underline float-right mx-6 md:mx-10"
                 href="{{ corresponding|safe }}">العربية</a>
             {% else if lang == Language::Arabic %}
-            <a class="text-blue-600 dark:text-blue-500 hover:underline" style="float:left"
+            <a class="text-blue-600 dark:text-blue-500 hover:underline float-left mx-6 md:mx-10"
                 href="{{ corresponding|safe }}">English</a>
             {% endif %}
             <div class="flex-row justify-items-center m-4">
@@ -319,39 +308,6 @@
             {% endif %}
         </span>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1) Toggle entire mobile menu
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-                mobileMenuButton.setAttribute('aria-expanded', String(!isExpanded));
-            });
-
-            // 2) Desktop Divisions dropdown toggle
-            const desktopDivisionsButton = document.getElementById('desktop-divisions-button');
-            const desktopDivisionsMenu = document.getElementById('desktop-divisions-menu');
-
-            desktopDivisionsButton.addEventListener('click', () => {
-                desktopDivisionsMenu.classList.toggle('hidden');
-                const isExpanded = desktopDivisionsButton.getAttribute('aria-expanded') === 'true';
-                desktopDivisionsButton.setAttribute('aria-expanded', String(!isExpanded));
-            });
-
-            // 3) Mobile Divisions dropdown toggle
-            const mobileDivisionsButton = document.getElementById('mobile-divisions-button');
-            const mobileDivisionsMenu = document.getElementById('mobile-divisions-menu');
-
-            mobileDivisionsButton.addEventListener('click', () => {
-                mobileDivisionsMenu.classList.toggle('hidden');
-                const isExpanded = mobileDivisionsButton.getAttribute('aria-expanded') === 'true';
-                mobileDivisionsButton.setAttribute('aria-expanded', String(!isExpanded));
-            });
-        });
-    </script>
 </body>
 
 </html>

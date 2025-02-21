@@ -42,7 +42,7 @@ async fn main() -> Result<()> {
         .nest("/ar/", default_routes.clone())
         .nest("/divisions/", divisions_routes.clone())
         .nest("/ar/divisions/", divisions_routes)
-        .nest_service("/assets", ServeDir::new("assets"));
+        .fallback_service(ServeDir::new("assets"));
 
     let listener = tokio::net::TcpListener::bind("localhost:8000").await?;
     println!("Listening on port 8000");
