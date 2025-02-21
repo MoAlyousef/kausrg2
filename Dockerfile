@@ -1,5 +1,5 @@
 FROM alpine:latest as build
-RUN apk add rust cargo
+RUN apk add rust cargo musl-dev
 WORKDIR /app
 COPY . .
 RUN cargo build --release 
