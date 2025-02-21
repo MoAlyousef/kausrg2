@@ -1,4 +1,4 @@
-FROM alpine:latest as build
+FROM alpine:latest AS build
 WORKDIR /app
 COPY . .
 RUN cp /app/kausurg /server
