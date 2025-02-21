@@ -45,8 +45,8 @@ async fn main() -> Result<()> {
         .nest("/ar/divisions/", divisions_routes)
         .fallback_service(ServeDir::new("assets"));
 
-    let listener = tokio::net::TcpListener::bind("localhost:8000").await?;
-    println!("Listening on port 8000");
+    let listener = tokio::net::TcpListener::bind("localhost:3000").await?;
+    println!("Listening on port 3000");
     axum::serve(listener, app.into_make_service()).await?;
     Ok(())
 }
