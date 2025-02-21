@@ -53,11 +53,11 @@
                             </button>
 
                             {% if lang == Language::English %}
-                            <ul class="hidden group-hover:block group-focus-within:block absolute top-8 right-4 z-50 
-                                       w-auto bg-white p-4 shadow-md rounded-md flex-col space-y-2 md:hidden">
+                            <ul class="hidden group-focus-within:block absolute top-8 right-4 z-50 
+                                       w-32 bg-white p-4 shadow-md rounded-md flex-col space-y-2 md:hidden">
                             {% else if lang == Language::Arabic %}
-                            <ul class="hidden group-hover:block group-focus-within:block absolute top-8 left-4 z-50 
-                                       w-auto bg-white p-4 shadow-md rounded-md flex-col space-y-2 md:hidden">
+                            <ul class="hidden group-focus-within:block absolute top-8 left-4 z-50 
+                                       w-32 bg-white p-4 shadow-md rounded-md flex-col space-y-2 md:hidden">
                             {% endif %}
                                 <li>
                                     {% if lang == Language::English %}
@@ -114,55 +114,16 @@
                                     </a>
                                     {% endif %}
                                 </li>
-
-                                <li class="relative group">
-                                    <button type="button"
-                                            class="flex items-center text-base text-gray-700 focus:outline-none"
-                                            aria-haspopup="true" aria-expanded="false" tabindex="0">
-                                        {% if lang == Language::English %}
+                                <li>
+                                    {% if lang == Language::English %}
+                                    <a href="/divisions" class="text-base text-gray-700 hover:text-gray-900">
                                         Divisions
-                                        {% else if lang == Language::Arabic %}
+                                    </a>
+                                    {% else if lang == Language::Arabic %}
+                                    <a href="/ar/divisions" class="text-base text-gray-700 hover:text-gray-900">
                                         الشعب
-                                        {% endif %}
-                                        <svg class="w-4 h-4 ml-1 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 01.02-1.06z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </button>
-                                    <ul class="hidden group-hover:block group-focus-within:block ml-4 mt-2 space-y-1">
-                                        {% if lang == Language::English %}
-                                        <li><a class="block text-gray-700 hover:text-gray-900"
-                                                href="/divisions/gs">General Surgery</a></li>
-                                        <li><a class="block text-gray-700 hover:text-gray-900"
-                                                href="/divisions/ns">Neurosurgery</a></li>
-                                        <li><a class="block text-gray-700 hover:text-gray-900"
-                                                href="/divisions/cs">Cardiac Surgery</a></li>
-                                        <li><a class="block text-gray-700 hover:text-gray-900"
-                                                href="/divisions/ts">Thoracic surgery</a></li>
-                                        <li><a class="block text-gray-700 hover:text-gray-900"
-                                                href="/divisions/vs">Vascular surgery</a></li>
-                                        <li><a class="block text-gray-700 hover:text-gray-900"
-                                                href="/divisions/pls">Plastic surgery</a></li>
-                                        <li><a class="block text-gray-700 hover:text-gray-900"
-                                                href="/divisions/peds">Pediatric surgery</a></li>
-                                        {% else if lang == Language::Arabic %}
-                                        <li><a class="block text-gray-700 hover:text-gray-900"
-                                                href="/ar/divisions/gs">الجراحة العامة</a></li>
-                                        <li><a class="block text-gray-700 hover:text-gray-900"
-                                                href="/ar/divisions/ns">جراحة المخ والأعصاب</a></li>
-                                        <li><a class="block text-gray-700 hover:text-gray-900"
-                                                href="/ar/divisions/cs">جراحة القلب</a></li>
-                                        <li><a class="block text-gray-700 hover:text-gray-900"
-                                                href="/ar/divisions/ts">جراحة الصدر</a></li>
-                                        <li><a class="block text-gray-700 hover:text-gray-900"
-                                                href="/ar/divisions/vs">جراحة الأوعية الدموية</a></li>
-                                        <li><a class="block text-gray-700 hover:text-gray-900"
-                                                href="/ar/divisions/pls">جراحة التجميل</a></li>
-                                        <li><a class="block text-gray-700 hover:text-gray-900"
-                                                href="/ar/divisions/peds">جراحة الأطفال</a></li>
-                                        {% endif %}
-                                    </ul>
+                                    </a>
+                                    {% endif %}
                                 </li>
                             </ul>
                         </div>
@@ -226,20 +187,17 @@
                         </li>
 
                         <li class="relative group">
-                            <button type="button"
-                                class="inline-flex items-center text-base font-normal text-gray-500 hover:text-gray-900 focus:outline-none"
-                                aria-haspopup="true" aria-expanded="false" tabindex="0">
+                            {% if lang == Language::English %}
+                            <a href="/divisions" class="text-base font-normal text-gray-500 hover:text-gray-900">
+                            {% else if lang == Language::Arabic %}
+                            <a href="/ar/divisions" class="text-base font-normal text-gray-500 hover:text-gray-900">
+                            {% endif %}
                                 {% if lang == Language::English %}
                                 Divisions
                                 {% else if lang == Language::Arabic %}
                                 الشعب
                                 {% endif %}
-                                <svg class="w-4 h-4 ml-1 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 01.02-1.06z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </button>
+                            </a>
                             <ul
                             class="hidden group-hover:block group-focus-within:block absolute top-full left-0 mt-0 w-48 bg-white
                                    border border-gray-200 rounded-md shadow-md z-50"
@@ -282,7 +240,7 @@
             </div>
         </div>
     </header>
-    <div>
+    <div class="mb-12">
         <main role="main">
             <br>
             {% if lang == Language::English %}
@@ -301,7 +259,7 @@
     </div>
 
     <footer class="mt-8">
-        <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+        <hr class="mt-12 mb-6 border-gray-200 sm:mx-auto lg:my-8" />
         <span class="block text-sm text-gray-500 text-center">
             {% if lang == Language::English %}
             &copy; 2019 - KAU Surgery - <a class="text-blue-600" href="/privacy">Privacy</a>

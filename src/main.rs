@@ -34,6 +34,7 @@ async fn main() -> Result<()> {
         .route("/mission", get(mission))
         .route("/privacy", get(privacy))
         .route("/contact", get(contact))
+        .route("/divisions", get(divisions))
         .route("/faculty", get(faculty))
         .route("/faculty/{id}", get(staff));
 

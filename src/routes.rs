@@ -119,6 +119,7 @@ simple!(About, "../templates/about.html");
 simple!(Mission, "../templates/mission.html");
 simple!(Privacy, "../templates/privacy.html");
 simple!(Contact, "../templates/contact.html");
+simple!(Divisions, "../templates/divisions.html");
 division!(Gs, "../templates/divisions/gs.html", 1);
 division!(Ns, "../templates/divisions/ns.html", 2);
 division!(Cs, "../templates/divisions/cs.html", 3);

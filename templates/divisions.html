@@ -1,0 +1,36 @@
+<br>
+<div class="flex-col">
+    <ul class="list-disc">
+        {% if lang == Language::English %}
+        <li><a class="block px-4 py-2 text-blue-500" href="/divisions/gs">General
+                Surgery</a></li>
+        <li><a class="block px-4 py-2 text-blue-500"
+                href="/divisions/ns">Neurosurgery</a></li>
+        <li><a class="block px-4 py-2 text-blue-500" href="/divisions/cs">Cardiac
+                Surgery</a></li>
+        <li><a class="block px-4 py-2 text-blue-500" href="/divisions/ts">Thoracic
+                surgery</a></li>
+        <li><a class="block px-4 py-2 text-blue-500" href="/divisions/vs">Vascular
+                surgery</a></li>
+        <li><a class="block px-4 py-2 text-blue-500" href="/divisions/pls">Plastic
+                surgery</a></li>
+        <li><a class="block px-4 py-2 text-blue-500" href="/divisions/peds">Pediatric
+                surgery</a></li>
+        {% else if lang == Language::Arabic %}
+        <li><a class="block px-4 py-2 text-blue-500" href="/ar/divisions/gs">الجراحة
+                العامة</a></li>
+        <li><a class="block px-4 py-2 text-blue-500" href="/ar/divisions/ns">جراحة
+                المخ والأعصاب</a></li>
+        <li><a class="block px-4 py-2 text-blue-500" href="/ar/divisions/cs">جراحة
+                القلب</a></li>
+        <li><a class="block px-4 py-2 text-blue-500" href="/ar/divisions/ts">جراحة
+                الصدر</a></li>
+        <li><a class="block px-4 py-2 text-blue-500" href="/ar/divisions/vs">جراحة
+                الأوعية الدموية</a></li>
+        <li><a class="block px-4 py-2 text-blue-500" href="/ar/divisions/pls">جراحة
+                التجميل</a></li>
+        <li><a class="block px-4 py-2 text-blue-500" href="/ar/divisions/peds">جراحة
+                الأطفال</a></li>
+        {% endif %}
+    </ul>
+</div>
