@@ -8,11 +8,15 @@ fn main() {
     let result = std::process::Command::new("npx")
         .args(["@tailwindcss/cli", "-i", &input, "-o", &output, "--minify"])
         .output()
-        .expect("Unable to generate css");
+        .ok();
 
-    if !result.status.success() {
-        let error = String::from_utf8_lossy(&result.stderr);
-        println!("cargo:warning=Unable to build CSS !");
-        println!("cargo:warning=Output: {error}");
+    if let Some(result) = result {
+        if !result.status.success() {
+            let error = String::from_utf8_lossy(&result.stderr);
+            println!("cargo:warning=Unable to build CSS !");
+            println!("cargo:warning=Output: {error}");
+        }
+    } else {
+        println!("cargo:warning=tailwind unavailable!");
     }
 }
