@@ -562,6 +562,9 @@
   .m-4 {
     margin: calc(var(--spacing) * 4);
   }
+  .m-6 {
+    margin: calc(var(--spacing) * 6);
+  }
   .mx-auto {
     margin-inline: auto;
   }
@@ -630,9 +633,6 @@
   }
   .max-w-md {
     max-width: var(--container-md);
-  }
-  .flex-1 {
-    flex: 1;
   }
   .list-inside {
     list-style-position: inside;
@@ -864,21 +864,6 @@
   .sm\:pb-24 {
     @media (width >= 40rem) {
       padding-bottom: calc(var(--spacing) * 24);
-    }
-  }
-  .md\:absolute {
-    @media (width >= 48rem) {
-      position: absolute;
-    }
-  }
-  .md\:inset-y-0 {
-    @media (width >= 48rem) {
-      inset-block: calc(var(--spacing) * 0);
-    }
-  }
-  .md\:left-0 {
-    @media (width >= 48rem) {
-      left: calc(var(--spacing) * 0);
     }
   }
   .md\:flex {
